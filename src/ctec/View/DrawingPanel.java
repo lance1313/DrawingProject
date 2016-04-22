@@ -9,6 +9,11 @@ import javax.swing.*;
 
 import ctec.controller.DrawingController;
 
+/**
+ * 
+ * @author Jacob
+ *
+ */
 public class DrawingPanel extends JPanel
 {
 	private DrawingController baseController;
@@ -24,6 +29,8 @@ public class DrawingPanel extends JPanel
 		rectangleList = new ArrayList<Rectangle>();
 		this.baseController = baseController;
 		setupPanel();
+		setupListeners();
+		setupLayout();
 	}
 	
 	
@@ -45,12 +52,12 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-			int xPosition = (int)(Math.random() * 600);
-			int yPosition = (int)(Math.random() * 600);
+			int xPosition = (int)(Math.random() * 800);
+			int yPosition = (int)(Math.random() * 800);
 			int width  = (int)(Math.random() * 50);
 			int height = (int)(Math.random() * 50);
 			
-			rectangleList.add(new Rectangle(xPosition,yPosition,width,height));
+			rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
 			repaint();
 			}
 		});
@@ -63,6 +70,7 @@ public class DrawingPanel extends JPanel
 	{
 		super.paintComponent(currentGraphics);
 		Graphics2D mainGraphics = (Graphics2D)currentGraphics;
+		mainGraphics.setColor(Color.BLUE);
 		mainGraphics.setStroke(new BasicStroke(5));
 		mainGraphics.draw(new Rectangle(10,10,20,40));
 		
@@ -72,8 +80,9 @@ public class DrawingPanel extends JPanel
 			int red  = (int)(Math.random() * 256);
 			int blue  = (int)(Math.random() * 256);
 			int green  = (int)(Math.random() * 256);
-			mainGraphics.setColor(new Color(red,green,blue));
+			mainGraphics.setColor(new Color(red, green, blue));
 			mainGraphics.setStroke(new BasicStroke(randomStroke));
+			
 			mainGraphics.fill(current);
 			
 		}
