@@ -2,14 +2,18 @@ package ctec.View;
 
 import javax.swing.*;
 
+import ctec.controller.DrawingController;
+
 public class DrawFrame extends JFrame
 {
 	private DrawingPanel basePanel;
 	private ShapePanel SPanel;
+	private DrawingController baseController;
 	
-	public DrawFrame()
+	public DrawFrame(DrawingController baseController)
 	{
-		basePanel = new DrawingPanel();
+		this.baseController = baseController;
+		basePanel = new DrawingPanel(baseController);
 		SPanel = new ShapePanel();
 		setupFrame();
 	}
@@ -19,6 +23,7 @@ public class DrawFrame extends JFrame
 		this.setContentPane(basePanel);
 		this.setSize(800, 800);
 		this.add(SPanel);
+		this.setResizable(false);
 		this.setTitle("Drawing shapes");
 		this.setVisible(true);
 	}
