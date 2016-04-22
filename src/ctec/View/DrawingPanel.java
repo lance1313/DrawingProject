@@ -18,6 +18,11 @@ public class DrawingPanel extends JPanel
 {
 	private DrawingController baseController;
 	private JButton drawRectangleButton;
+	private JButton drawCirlceButton;
+	private JButton drawSquareButton;
+	private JButton drawPolygonButton;
+	private JButton drawTriangleButton;
+	private JButton drawEllipseButton;
 	private JScrollPane DrawingPane;
 	private ShapePanel shapePanel;
 	private ArrayList<Rectangle> rectangleList;
