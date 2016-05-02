@@ -22,19 +22,15 @@ public class ShapePanel extends JPanel
 		circleList = new ArrayList<Ellipse2D>();
 		squareList = new ArrayList<Polygon>();
 		ellipseList = new ArrayList<Ellipse2D>();
-		rectangleList= new ArrayList<Rectangle>() ;
-		polygonList= new ArrayList<Polygon>() ;
-		addRectangle();
-		addSquare();
-		addTriangle();
-		addCircle();
-		addPolygon();
+		rectangleList= new ArrayList<Rectangle>();
+		polygonList= new ArrayList<Polygon>();
+		
 	}
 	
 	public void addEllipse()
 	{
-		int xPoint = (int)(Math.random() * 1000);
-		int yPoint = (int)(Math.random() * 1000);
+		int xPoint = (int)(Math.random() * 200);
+		int yPoint = (int)(Math.random() * 200);
 		int width =  (int)(Math.random() * 100);
 		int height =  (int)(Math.random() * 100);
 		
@@ -43,18 +39,25 @@ public class ShapePanel extends JPanel
 	}
 	public void addRectangle()
 	{
-		
+		int [] xPoints = new int [4];
+		int [] yPoints = new int [4];
+		//xPoints[0]= (int)(Math.random() * 250);
+		xPoints = new int []{(int)(Math.random() * 150),(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250)};
+		yPoints = new int []{(int)(Math.random() * 150),(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250)};
+	
+		Polygon square = new Polygon(xPoints,yPoints,4);
+		squareList.add(square);
 	}
 	public void addSquare()
 	{
-//		int [] xPoints = new int [4];
-//		int [] yPoints = new int [4];
-//		//xPoints[0]= (int)(Math.random() * 250);
-//		xPoints = new int []{(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250)};
-//		yPoints = new int []{(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250)};
-//	
-//		Polygon square = new Polygon(xPoints,yPoints,4);
-//		squareList.add(square);
+		int [] xPoints = new int [4];
+		int [] yPoints = new int [4];
+		//xPoints[0]= (int)(Math.random() * 250);
+		xPoints = new int []{(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250)};
+		yPoints = new int []{(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250),(int)(Math.random() * 250)};
+	
+		Polygon square = new Polygon(xPoints,yPoints,4);
+		squareList.add(square);
 		
 	}
 	
@@ -73,9 +76,9 @@ public class ShapePanel extends JPanel
 	
 	public void addCircle()
 	{
-		int xPoint = (int)(Math.random() * 1000);
-		int yPoint = (int)(Math.random() * 1000);
-		int diameter =  (int)(Math.random() * 100);
+		int xPoint = (int)(Math.random() * 200);
+		int yPoint = (int)(Math.random() * 200);
+		int diameter =  (int)(Math.random() * 10);
 		
 		Ellipse2D circle = new Ellipse2D.Double(xPoint,yPoint,diameter,diameter);
 		circleList.add(circle);
@@ -89,13 +92,39 @@ public class ShapePanel extends JPanel
 		int [] yPoints = new int [numberOfSides];
 		for(int sides = 0 ; sides < numberOfSides;sides++)
 		{
-			 xPoints[sides] = (int)(Math.random() * 300);
-			 yPoints[sides] = (int)(Math.random() * 300);
+			 xPoints[sides] = (int)(Math.random() * 200);
+			 yPoints[sides] = (int)(Math.random() * 200);
 		}
 		Polygon myPolygon = new Polygon(xPoints,yPoints,numberOfSides);
 		polygonList.add(myPolygon);
 		
 		
+	}
+	
+	private void drawShapes(Graphics2D mainGraphics,ArrayList<Shape> shapeList)
+	{
+		for(Shape currentShape : shapeList)
+		{
+			int red  = (int)(Math.random() * 256);
+			int blue  = (int)(Math.random() * 256);
+			int green  = (int)(Math.random() * 256);
+			
+			int pencilSize = (int ) (Math.random() * 15);
+			
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(pencilSize));
+			if(currentShape instanceof Polygon)
+			{
+				mainGraphics.draw((Shape)currentShape);
+				
+			}
+			else
+			{
+				
+				mainGraphics.fill((Shape)currentShape);
+			}
+			
+		}
 	}
 	
 	public void clear()
@@ -109,7 +138,7 @@ public class ShapePanel extends JPanel
 		
 	}
 	
-	protected void paintCompoent(Graphics currentGraphics)
+	protected void paintComponent(Graphics currentGraphics)
 	{
 		super.paintComponent(currentGraphics);
 		Graphics2D mainGraphics = (Graphics2D)currentGraphics;
@@ -140,7 +169,7 @@ public class ShapePanel extends JPanel
 			
 			
 			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.fill(current);
+			mainGraphics.draw(current);
 			
 		}
 		for(Ellipse2D current : circleList)

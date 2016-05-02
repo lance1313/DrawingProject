@@ -21,7 +21,7 @@ public class DrawFrame extends JFrame
 	public void setupFrame()
 	{
 		this.setContentPane(basePanel);
-		this.setSize(800, 800);
+		this.setSize(500, 500);
 		this.add(SPanel);
 		this.setResizable(false);
 		this.setTitle("Drawing shapes");
