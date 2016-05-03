@@ -18,7 +18,9 @@ public class GraphPanel extends JPanel
 		 * height based off array
 		 */
 		int [] graphSource = {5,13,10,16,20};
-		 int x = 20;
+		 int x = 0;
+		 int height = getHeight() / graphSource.length;
+		 int y = height * index
 	}
 	
 	public void graph()
@@ -35,6 +37,7 @@ public class GraphPanel extends JPanel
 			//draw a rectangle for each vaue in the array.
 			int [] xPoints = new int [4];
 			int [] yPoints = new int [4];
+			
 			
 			int red  = (int)(Math.random() * 256);
 			int blue  = (int)(Math.random() * 256);
