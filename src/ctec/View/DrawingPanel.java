@@ -162,14 +162,7 @@ public class DrawingPanel extends JPanel
 			}
 		});
 		
-		drawGraphButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent click)
-			{
-			graphPanel.graph();
-			repaint();
-			}
-		});
+		
 			
 		
 	}

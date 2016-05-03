@@ -138,6 +138,7 @@ public class ShapePanel extends JPanel
 		
 	}
 	
+	@Override
 	protected void paintComponent(Graphics currentGraphics)
 	{
 		super.paintComponent(currentGraphics);
